@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ChevronDown, MessageCircle, Bed } from "lucide-react";
+import { ChevronDown, MessageCircle } from "lucide-react";
 import Logo from "../ui/Logo";
 import { CONTACT } from "@/lib/data";
 
@@ -21,7 +21,7 @@ export default function HeroSection() {
     >
       {/* Background Image */}
       <Image
-        src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80"
+        src="/images/ranuli_4.jpeg"
         alt="Relax Villa – Luxury private pool at sunset"
         fill
         className="object-cover"
@@ -103,18 +103,11 @@ export default function HeroSection() {
           transition={{ delay: 0.8, duration: 0.7 }}
           className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
         >
-          <button
-            onClick={() => document.querySelector("#rooms")?.scrollIntoView({ behavior: "smooth" })}
-            className="flex items-center justify-center gap-2 px-8 py-4 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:bg-gold-dark transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
-          >
-            <Bed size={16} />
-            Explore Rooms
-          </button>
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-8 py-4 border border-white/40 text-white text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:border-gold hover:text-gold transition-all duration-300 backdrop-blur-sm"
+            className="flex items-center justify-center gap-2 px-8 py-4 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:bg-gold-dark transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
           >
             <MessageCircle size={16} />
             Book Now

@@ -29,7 +29,7 @@ export default function AboutSection() {
             {/* Main image */}
             <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=800&q=80"
+                src="/images/ranuli_2.jpeg"
                 alt="Relax Villa – Luxury exterior"
                 fill
                 className="object-cover"
@@ -60,7 +60,7 @@ export default function AboutSection() {
               className="absolute -top-6 -right-4 sm:-right-6 w-32 sm:w-40 h-32 sm:h-40 rounded-sm overflow-hidden shadow-xl border-4 border-white"
             >
               <Image
-                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=80"
+                src="/images/ranuli_5.jpeg"
                 alt="Private pool"
                 fill
                 className="object-cover"

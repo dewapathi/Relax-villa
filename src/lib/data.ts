@@ -1,7 +1,6 @@
 export const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Rooms", href: "#rooms" },
   { label: "Facilities", href: "#facilities" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
@@ -34,89 +33,38 @@ export const features = [
   },
 ];
 
-export const rooms = [
-  {
-    id: 1,
-    name: "Garden Suite",
-    type: "Standard Room",
-    description:
-      "A cozy, beautifully decorated room overlooking the lush garden. Features a king-size bed, en-suite bathroom, and private veranda.",
-    image:
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
-    amenities: ["King Bed", "Garden View", "En-Suite Bathroom", "Air Conditioning", "Free WiFi"],
-    size: "32 m²",
-  },
-  {
-    id: 2,
-    name: "Pool View Room",
-    type: "Deluxe Room",
-    description:
-      "Wake up to the glittering pool view from this elegant room. Features premium linens, modern décor, and a private balcony.",
-    image:
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
-    amenities: ["King Bed", "Pool View", "Private Balcony", "En-Suite Bathroom", "Minibar"],
-    size: "38 m²",
-  },
-  {
-    id: 3,
-    name: "Family Suite",
-    type: "Suite",
-    description:
-      "Spacious and thoughtfully designed for families. Includes a separate living area, two bathrooms, and all the comforts of home.",
-    image:
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
-    amenities: ["2 Bedrooms", "Living Area", "2 Bathrooms", "Family-Friendly", "Extra Amenities"],
-    size: "65 m²",
-  },
-  {
-    id: 4,
-    name: "Master Suite",
-    type: "Premium Suite",
-    description:
-      "The pinnacle of luxury at Relax Villa. An expansive suite with a canopy bed, rain shower, and panoramic views of the estate.",
-    image:
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
-    amenities: ["Canopy Bed", "Rain Shower", "Panoramic View", "Lounge Area", "Premium Amenities"],
-    size: "72 m²",
-  },
-];
-
 export const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80",
-    alt: "Luxury villa aerial view",
+    src: "/images/ranuli_2.jpeg",
+    alt: "Villa exterior in daylight",
   },
   {
-    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
-    alt: "Infinity pool at sunset",
+    src: "/images/ranuli_3.jpeg",
+    alt: "Villa illuminated at dusk",
   },
   {
-    src: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
+    src: "/images/ranuli_7.jpeg",
+    alt: "Private swimming pool",
+  },
+  {
+    src: "/images/ranuli_6.jpeg",
     alt: "Elegant bedroom",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
-    alt: "Master suite",
   },
   {
     src: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80",
     alt: "Breakfast spread",
   },
   {
-    src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80",
-    alt: "Private swimming pool",
+    src: "/images/ranuli_1.jpeg",
+    alt: "Modern en-suite bathroom",
   },
   {
-    src: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
-    alt: "Deluxe room",
+    src: "/images/ranuli_5.jpeg",
+    alt: "Poolside lounging",
   },
   {
-    src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
-    alt: "Family suite",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=800&q=80",
-    alt: "Villa garden and exterior",
+    src: "/images/ranuli_4.jpeg",
+    alt: "Villa at twilight",
   },
 ];
 
