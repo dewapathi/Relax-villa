@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import { MessageCircle, Mail, Phone, MapPin, Send } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
 import { CONTACT } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ContactSection() {
+  const { t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -17,7 +19,7 @@ export default function ContactSection() {
     message: "",
   });
 
-  const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(CONTACT.whatsappMessage)}`;
+  const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(t.whatsapp.bookingMessage)}`;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -57,9 +59,9 @@ export default function ContactSection() {
           className="mb-16 lg:mb-20"
         >
           <SectionTitle
-            tagline="Contact & Booking"
-            title="Plan your escape"
-            subtitle="We'd love to welcome you to Relax Villa. Reach out via WhatsApp, email, or use the form below to enquire about availability."
+            tagline={t.contact.tagline}
+            title={t.contact.title}
+            subtitle={t.contact.subtitle}
             light
           />
         </motion.div>
@@ -84,7 +86,7 @@ export default function ContactSection() {
                 <MessageCircle size={22} className="text-white" />
               </div>
               <div>
-                <p className="font-medium text-ivory">WhatsApp (Fastest Response)</p>
+                <p className="font-medium text-ivory">{t.contact.whatsappLabel}</p>
                 <p className="text-ivory/60 text-sm mt-0.5">+{CONTACT.whatsapp}</p>
               </div>
             </a>
@@ -98,7 +100,7 @@ export default function ContactSection() {
                 <Phone size={20} className="text-gold" />
               </div>
               <div>
-                <p className="font-medium text-ivory">Phone</p>
+                <p className="font-medium text-ivory">{t.contact.phoneLabel}</p>
                 <p className="text-ivory/60 text-sm mt-0.5">{CONTACT.phone}</p>
               </div>
             </a>
@@ -112,7 +114,7 @@ export default function ContactSection() {
                 <Mail size={20} className="text-gold" />
               </div>
               <div>
-                <p className="font-medium text-ivory">Email</p>
+                <p className="font-medium text-ivory">{t.contact.emailLabel}</p>
                 <p className="text-ivory/60 text-sm mt-0.5">{CONTACT.email}</p>
               </div>
             </a>
@@ -123,7 +125,7 @@ export default function ContactSection() {
                 <MapPin size={20} className="text-gold" />
               </div>
               <div>
-                <p className="font-medium text-ivory">Address</p>
+                <p className="font-medium text-ivory">{t.contact.addressLabel}</p>
                 <p className="text-ivory/60 text-sm mt-0.5 leading-relaxed">{CONTACT.address}</p>
               </div>
             </div>
@@ -131,7 +133,7 @@ export default function ContactSection() {
             {/* Quote */}
             <div className="border-l-2 border-gold/40 pl-5 py-2 mt-4">
               <p className="font-serif italic text-gold-light text-lg leading-relaxed">
-                &ldquo;We look forward to making your stay truly special.&rdquo;
+                &ldquo;{t.contact.quote}&rdquo;
               </p>
             </div>
           </motion.div>
@@ -146,14 +148,14 @@ export default function ContactSection() {
           >
             <div className="bg-white/5 border border-white/10 p-8 rounded-sm">
               <p className="text-ivory/60 text-xs tracking-[0.25em] uppercase mb-6">
-                Booking Enquiry Form
+                {t.contact.formTitle}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-ivory/60 text-xs mb-1.5 tracking-wide">
-                      Full Name *
+                      {t.contact.fullName}
                     </label>
                     <input
                       type="text"
@@ -161,13 +163,13 @@ export default function ContactSection() {
                       value={form.name}
                       onChange={handleChange}
                       required
-                      placeholder="Your full name"
+                      placeholder={t.contact.fullNamePlaceholder}
                       className={inputClass}
                     />
                   </div>
                   <div>
                     <label className="block text-ivory/60 text-xs mb-1.5 tracking-wide">
-                      Email Address *
+                      {t.contact.emailAddress}
                     </label>
                     <input
                       type="email"
@@ -175,7 +177,7 @@ export default function ContactSection() {
                       value={form.email}
                       onChange={handleChange}
                       required
-                      placeholder="your@email.com"
+                      placeholder={t.contact.emailPlaceholder}
                       className={inputClass}
                     />
                   </div>
@@ -184,20 +186,20 @@ export default function ContactSection() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-ivory/60 text-xs mb-1.5 tracking-wide">
-                      Phone Number
+                      {t.contact.phoneNumber}
                     </label>
                     <input
                       type="tel"
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
-                      placeholder="+1 234 567 8900"
+                      placeholder={t.contact.phonePlaceholder}
                       className={inputClass}
                     />
                   </div>
                   <div>
                     <label className="block text-ivory/60 text-xs mb-1.5 tracking-wide">
-                      Number of Guests
+                      {t.contact.guestsLabel}
                     </label>
                     <select
                       name="guests"
@@ -207,7 +209,7 @@ export default function ContactSection() {
                     >
                       {["1", "2", "3", "4", "5", "6", "7", "8+"].map((n) => (
                         <option key={n} value={n} className="bg-green-900">
-                          {n} Guest{n === "1" ? "" : "s"}
+                          {n} {n === "1" ? t.contact.guestSingular : t.contact.guestPlural}
                         </option>
                       ))}
                     </select>
@@ -217,7 +219,7 @@ export default function ContactSection() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-ivory/60 text-xs mb-1.5 tracking-wide">
-                      Check-in Date
+                      {t.contact.checkIn}
                     </label>
                     <input
                       type="date"
@@ -229,7 +231,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <label className="block text-ivory/60 text-xs mb-1.5 tracking-wide">
-                      Check-out Date
+                      {t.contact.checkOut}
                     </label>
                     <input
                       type="date"
@@ -243,14 +245,14 @@ export default function ContactSection() {
 
                 <div>
                   <label className="block text-ivory/60 text-xs mb-1.5 tracking-wide">
-                    Message / Special Requests
+                    {t.contact.message}
                   </label>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
                     rows={4}
-                    placeholder="Tell us about your visit, any special requirements, or questions..."
+                    placeholder={t.contact.messagePlaceholder}
                     className={`${inputClass} resize-none`}
                   />
                 </div>
@@ -261,7 +263,7 @@ export default function ContactSection() {
                     className="flex-1 flex items-center justify-center gap-2 py-4 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:bg-gold-dark transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
                   >
                     <Send size={15} />
-                    Send Enquiry
+                    {t.contact.send}
                   </button>
                   <a
                     href={whatsappUrl}
@@ -270,13 +272,11 @@ export default function ContactSection() {
                     className="flex items-center justify-center gap-2 px-6 py-4 border border-white/20 text-ivory text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:border-[#25D366]/50 hover:text-[#25D366] transition-all duration-300"
                   >
                     <MessageCircle size={15} />
-                    WhatsApp
+                    {t.contact.whatsapp}
                   </a>
                 </div>
 
-                <p className="text-ivory/30 text-xs text-center pt-2">
-                  This form opens your email client. For instant response, use WhatsApp above.
-                </p>
+                <p className="text-ivory/30 text-xs text-center pt-2">{t.contact.formNote}</p>
               </form>
             </div>
           </motion.div>

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Waves, Wifi, Car, Coffee, Wind, ShowerHead, Tv, Shield } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
 import { facilities } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 const iconMap: Record<string, React.ReactNode> = {
   Waves: <Waves size={20} strokeWidth={1.5} />,
@@ -18,6 +19,8 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function FacilitiesSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="facilities" className="bg-green-900 py-24 lg:py-36 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,9 +32,9 @@ export default function FacilitiesSection() {
           className="mb-16 lg:mb-20"
         >
           <SectionTitle
-            tagline="Pool & Facilities"
-            title="Resort-style living"
-            subtitle="Enjoy the luxury of a private resort experience with our exclusive pool and thoughtfully curated amenities."
+            tagline={t.facilities.tagline}
+            title={t.facilities.title}
+            subtitle={t.facilities.subtitle}
             light
           />
         </motion.div>
@@ -48,7 +51,7 @@ export default function FacilitiesSection() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-2xl shadow-black/30">
               <Image
                 src="/images/ranuli_7.jpeg"
-                alt="Relax Villa – Private swimming pool"
+                alt={t.facilities.poolImageAlt}
                 fill
                 className="object-cover"
               />
@@ -57,13 +60,15 @@ export default function FacilitiesSection() {
               {/* Overlay badge */}
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                 <div>
-                  <p className="font-serif text-white text-2xl font-light">Private Pool</p>
+                  <p className="font-serif text-white text-2xl font-light">
+                    {t.facilities.poolBadgeTitle}
+                  </p>
                   <p className="text-gold-light text-xs tracking-[0.2em] uppercase mt-1">
-                    Exclusively Yours
+                    {t.facilities.poolBadgeSubtitle}
                   </p>
                 </div>
                 <div className="bg-gold text-green-950 px-4 py-2 text-xs tracking-[0.15em] uppercase font-medium rounded-sm">
-                  Free Access
+                  {t.facilities.freeAccess}
                 </div>
               </div>
             </div>
@@ -82,19 +87,17 @@ export default function FacilitiesSection() {
           >
             <div className="mb-8">
               <p className="text-ivory/70 text-base sm:text-lg leading-relaxed">
-                Our private pool is the heart of the Relax Villa experience. Crystal-clear waters,
-                sunbeds, and a tranquil atmosphere make it the perfect spot to unwind any time of day.
+                {t.facilities.paragraph1}
               </p>
               <p className="text-ivory/70 text-base sm:text-lg leading-relaxed mt-4">
-                All guests enjoy exclusive access — no crowds, no bookings, just pure relaxation at
-                your own pace.
+                {t.facilities.paragraph2}
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               {facilities.map((facility, i) => (
                 <motion.div
-                  key={facility.label}
+                  key={facility.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -104,7 +107,9 @@ export default function FacilitiesSection() {
                   <span className="text-gold group-hover:scale-110 transition-transform duration-300 shrink-0">
                     {iconMap[facility.icon]}
                   </span>
-                  <span className="text-ivory/80 text-sm leading-tight">{facility.label}</span>
+                  <span className="text-ivory/80 text-sm leading-tight">
+                    {t.facilities.items[facility.id]}
+                  </span>
                 </motion.div>
               ))}
             </div>

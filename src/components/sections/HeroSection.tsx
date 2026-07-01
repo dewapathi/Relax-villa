@@ -6,9 +6,11 @@ import { motion } from "framer-motion";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import Logo from "../ui/Logo";
 import { CONTACT } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HeroSection() {
-  const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(CONTACT.whatsappMessage)}`;
+  const { t } = useLanguage();
+  const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(t.whatsapp.bookingMessage)}`;
 
   const scrollToAbout = () => {
     document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
@@ -60,7 +62,7 @@ export default function HeroSection() {
         >
           <span className="w-10 h-px bg-gold/70" />
           <p className="text-gold-light text-xs tracking-[0.35em] uppercase font-sans">
-            Luxury Villa Accommodation
+            {t.hero.badge}
           </p>
           <span className="w-10 h-px bg-gold/70" />
         </motion.div>
@@ -72,9 +74,9 @@ export default function HeroSection() {
           transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="font-serif font-light text-white text-6xl sm:text-7xl lg:text-8xl xl:text-9xl leading-[0.95] tracking-tight mb-6"
         >
-          Relax
+          {t.hero.titleFirst}
           <br />
-          <em className="font-light italic text-gold-light">Villa</em>
+          <em className="font-light italic text-gold-light">{t.hero.titleSecond}</em>
         </motion.h1>
 
         {/* Subtitle */}
@@ -84,8 +86,8 @@ export default function HeroSection() {
           transition={{ delay: 0.55, duration: 0.8 }}
           className="text-white/75 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl font-light"
         >
-          Where comfort, tranquility, and warm hospitality come together
-          <br className="hidden sm:block" /> to create a stay that truly feels like home.
+          {t.hero.subtitleLine1}
+          <br className="hidden sm:block" /> {t.hero.subtitleLine2}
         </motion.p>
 
         {/* Divider */}
@@ -110,7 +112,7 @@ export default function HeroSection() {
             className="flex items-center justify-center gap-2 px-8 py-4 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:bg-gold-dark transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
           >
             <MessageCircle size={16} />
-            Book Now
+            {t.hero.cta}
           </a>
         </motion.div>
 
@@ -122,9 +124,9 @@ export default function HeroSection() {
           className="flex items-center gap-8 sm:gap-12 mt-14 pt-10 border-t border-white/20"
         >
           {[
-            { value: "4", label: "Bedrooms" },
-            { value: "B&B", label: "Included" },
-            { value: "Pool", label: "Private" },
+            { value: t.hero.stats.bedroomsValue, label: t.hero.stats.bedroomsLabel },
+            { value: t.hero.stats.includedValue, label: t.hero.stats.includedLabel },
+            { value: t.hero.stats.poolValue, label: t.hero.stats.poolLabel },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="font-serif text-2xl sm:text-3xl text-gold font-light leading-none">
@@ -147,7 +149,7 @@ export default function HeroSection() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 hover:text-gold transition-colors duration-300"
         aria-label="Scroll down"
       >
-        <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+        <span className="text-[10px] tracking-[0.3em] uppercase">{t.hero.scroll}</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

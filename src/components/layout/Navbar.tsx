@@ -1,15 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../ui/Logo";
+import LanguageSwitcher from "../ui/LanguageSwitcher";
 import { navLinks, CONTACT } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -28,7 +30,7 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(CONTACT.whatsappMessage)}`;
+  const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(t.whatsapp.bookingMessage)}`;
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
@@ -62,14 +64,14 @@ export default function Navbar() {
                     scrolled ? "text-green-900" : "text-white"
                   }`}
                 >
-                  Relax Villa
+                  {t.brand.name}
                 </p>
                 <p
                   className={`text-[10px] tracking-[0.25em] uppercase transition-colors duration-300 ${
                     scrolled ? "text-gold-dark" : "text-gold-light"
                   }`}
                 >
-                  Luxury Stays
+                  {t.brand.tagline}
                 </p>
               </div>
             </a>
@@ -85,14 +87,16 @@ export default function Navbar() {
                     scrolled ? "text-green-900" : "text-white/90"
                   }`}
                 >
-                  {link.label}
+                  {t.nav[link.key]}
                   <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
             </div>
 
-            {/* CTA + Mobile Toggle */}
+            {/* Language Switcher + CTA + Mobile Toggle */}
             <div className="flex items-center gap-3">
+              <LanguageSwitcher instanceId="desktop" light={!scrolled} className="hidden sm:inline-flex" />
+
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -100,7 +104,7 @@ export default function Navbar() {
                 className="hidden sm:flex items-center gap-2 px-4 py-2 bg-gold text-green-950 text-sm tracking-widest uppercase font-medium rounded-sm hover:bg-gold-dark transition-colors duration-300"
               >
                 <MessageCircle size={15} />
-                <span>Book Now</span>
+                <span>{t.nav.bookNow}</span>
               </a>
 
               <button
@@ -125,21 +129,24 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "tween", duration: 0.35 }}
-            className="fixed inset-0 z-40 bg-green-950 flex flex-col"
+            className="fixed inset-0 z-[60] bg-green-950 flex flex-col"
           >
             {/* Close button */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
               <div className="flex items-center gap-3">
                 <Logo light size="sm" />
-                <p className="font-serif text-white text-lg">Relax Villa</p>
+                <p className="font-serif text-white text-lg">{t.brand.name}</p>
               </div>
-              <button
-                onClick={() => setMobileOpen(false)}
-                className="text-white/70 hover:text-white p-1"
-                aria-label="Close menu"
-              >
-                <X size={24} />
-              </button>
+              <div className="flex items-center gap-4">
+                <LanguageSwitcher instanceId="mobile" light />
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="text-white/70 hover:text-white p-1"
+                  aria-label="Close menu"
+                >
+                  <X size={24} />
+                </button>
+              </div>
             </div>
 
             {/* Links */}
@@ -154,7 +161,7 @@ export default function Navbar() {
                   onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
                   className="text-4xl font-serif font-light text-white/80 hover:text-gold py-3 border-b border-white/10 transition-colors duration-200"
                 >
-                  {link.label}
+                  {t.nav[link.key]}
                 </motion.a>
               ))}
             </div>
@@ -169,7 +176,7 @@ export default function Navbar() {
                 className="flex items-center justify-center gap-2 w-full py-4 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm"
               >
                 <MessageCircle size={18} />
-                Book Now via WhatsApp
+                {t.nav.bookNowWhatsapp}
               </a>
             </div>
           </motion.div>

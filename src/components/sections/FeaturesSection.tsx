@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { BedDouble, Coffee, Waves, Leaf } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
 import { features } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 const iconMap: Record<string, React.ReactNode> = {
   BedDouble: <BedDouble size={32} strokeWidth={1.5} />,
@@ -13,6 +14,8 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function FeaturesSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-ivory py-24 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,16 +27,16 @@ export default function FeaturesSection() {
           className="mb-16 lg:mb-20"
         >
           <SectionTitle
-            tagline="What We Offer"
-            title="Crafted for your comfort"
-            subtitle="Every detail at Relax Villa has been thoughtfully designed to ensure you enjoy a truly memorable and relaxing stay."
+            tagline={t.features.tagline}
+            title={t.features.title}
+            subtitle={t.features.subtitle}
           />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {features.map((feature, i) => (
             <motion.div
-              key={feature.title}
+              key={feature.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -50,10 +53,10 @@ export default function FeaturesSection() {
 
                 {/* Content */}
                 <h3 className="font-serif text-xl text-green-950 mb-3 font-medium group-hover:text-green-900">
-                  {feature.title}
+                  {t.features.items[feature.id].title}
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed flex-1">
-                  {feature.description}
+                  {t.features.items[feature.id].description}
                 </p>
 
                 {/* Bottom accent */}

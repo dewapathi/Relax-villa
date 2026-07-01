@@ -1,9 +1,13 @@
+"use client";
+
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import Logo from "../ui/Logo";
 import { navLinks, CONTACT } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
-  const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(CONTACT.whatsappMessage)}`;
+  const { t } = useLanguage();
+  const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(t.whatsapp.bookingMessage)}`;
 
   return (
     <footer className="bg-green-950 text-ivory/70">
@@ -12,10 +16,10 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <p className="font-serif text-2xl sm:text-3xl text-ivory font-light">
-              Ready for a peaceful escape?
+              {t.footer.ctaTitle}
             </p>
             <p className="text-ivory/60 mt-1 text-sm">
-              Reach out to us — we would love to host you.
+              {t.footer.ctaSubtitle}
             </p>
           </div>
           <a
@@ -25,7 +29,7 @@ export default function Footer() {
             className="flex items-center gap-2 px-8 py-3.5 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:bg-gold-dark transition-colors duration-300 shrink-0"
           >
             <MessageCircle size={16} />
-            Book via WhatsApp
+            {t.footer.ctaButton}
           </a>
         </div>
       </div>
@@ -39,26 +43,25 @@ export default function Footer() {
               <Logo light size="md" />
               <div>
                 <p className="font-serif text-ivory text-xl font-medium leading-none">
-                  Relax Villa
+                  {t.brand.name}
                 </p>
                 <p className="text-gold text-[10px] tracking-[0.25em] uppercase mt-0.5">
-                  Luxury Stays
+                  {t.brand.tagline}
                 </p>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-ivory/60 max-w-xs">
-              Where comfort, tranquility, and warm hospitality come together to
-              create a stay that truly feels like home.
+              {t.footer.description}
             </p>
             <p className="mt-6 font-serif text-gold italic text-base">
-              &ldquo;Stay in comfort, relax in style, and feel at home.&rdquo;
+              &ldquo;{t.footer.quote}&rdquo;
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="text-ivory text-xs tracking-[0.25em] uppercase font-medium mb-6 border-b border-white/10 pb-3">
-              Quick Links
+              {t.footer.quickLinks}
             </h4>
             <ul className="space-y-3">
               {navLinks.map((link) => (
@@ -67,7 +70,7 @@ export default function Footer() {
                     href={link.href}
                     className="text-sm hover:text-gold hover:pl-1 transition-all duration-200"
                   >
-                    {link.label}
+                    {t.nav[link.key]}
                   </a>
                 </li>
               ))}
@@ -77,7 +80,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h4 className="text-ivory text-xs tracking-[0.25em] uppercase font-medium mb-6 border-b border-white/10 pb-3">
-              Contact Us
+              {t.footer.contactUs}
             </h4>
             <ul className="space-y-4">
               <li>
@@ -112,8 +115,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ivory/40">
-          <p>© {new Date().getFullYear()} Relax Villa. All rights reserved.</p>
-          <p className="font-serif italic">Designed with care for our guests.</p>
+          <p>© {new Date().getFullYear()} {t.brand.name}. {t.footer.rightsReserved}</p>
+          <p className="font-serif italic">{t.footer.designedWith}</p>
         </div>
       </div>
     </footer>

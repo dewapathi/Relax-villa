@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
 import { testimonials } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function TestimonialsSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-ivory py-24 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,16 +20,16 @@ export default function TestimonialsSection() {
           className="mb-16 lg:mb-20"
         >
           <SectionTitle
-            tagline="Guest Reviews"
-            title="What our guests say"
-            subtitle="The warmth of our guests' experiences speaks for itself. Here's what some of our visitors have shared about their stay."
+            tagline={t.testimonials.tagline}
+            title={t.testimonials.title}
+            subtitle={t.testimonials.subtitle}
           />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {testimonials.map((t, i) => (
+          {testimonials.map((testimonial, i) => (
             <motion.div
-              key={t.id}
+              key={testimonial.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -42,14 +45,14 @@ export default function TestimonialsSection() {
 
               {/* Stars */}
               <div className="flex gap-1 mb-5">
-                {Array.from({ length: t.rating }).map((_, j) => (
+                {Array.from({ length: testimonial.rating }).map((_, j) => (
                   <Star key={j} size={14} fill="#C8A96E" className="text-gold" />
                 ))}
               </div>
 
               {/* Text */}
               <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-8 italic">
-                &ldquo;{t.text}&rdquo;
+                &ldquo;{t.testimonials.items[testimonial.id].text}&rdquo;
               </p>
 
               {/* Divider */}
@@ -58,12 +61,14 @@ export default function TestimonialsSection() {
               {/* Author */}
               <div className="flex items-center gap-4">
                 <div className="w-11 h-11 rounded-full bg-green-900 flex items-center justify-center shrink-0">
-                  <span className="font-serif text-gold text-sm font-medium">{t.initials}</span>
+                  <span className="font-serif text-gold text-sm font-medium">
+                    {testimonial.initials}
+                  </span>
                 </div>
                 <div>
-                  <p className="font-medium text-green-950 text-sm">{t.name}</p>
+                  <p className="font-medium text-green-950 text-sm">{testimonial.name}</p>
                   <p className="text-stone-400 text-xs mt-0.5">
-                    {t.role} · {t.date}
+                    {t.testimonials.items[testimonial.id].role} · {testimonial.date}
                   </p>
                 </div>
               </div>

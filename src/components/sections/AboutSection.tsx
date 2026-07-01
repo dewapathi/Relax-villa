@@ -4,16 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
-
-const highlights = [
-  "Peaceful and private villa-style accommodation",
-  "4 beautifully furnished bedrooms for every type of traveller",
-  "Inclusive bed & breakfast to start your day right",
-  "Private swimming pool exclusively for our guests",
-  "Personal attention and warm, caring hospitality",
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function AboutSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="bg-white py-24 lg:py-36 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,7 +25,7 @@ export default function AboutSection() {
             <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
               <Image
                 src="/images/ranuli_2.jpeg"
-                alt="Relax Villa – Luxury exterior"
+                alt={t.about.mainImageAlt}
                 fill
                 className="object-cover"
               />
@@ -46,9 +41,15 @@ export default function AboutSection() {
               transition={{ delay: 0.4, duration: 0.7 }}
               className="absolute -bottom-8 -right-6 sm:-right-8 bg-green-900 text-white p-6 sm:p-8 shadow-2xl max-w-[180px]"
             >
-              <p className="font-serif text-5xl text-gold font-light leading-none">4</p>
-              <p className="text-xs tracking-[0.2em] uppercase text-white/70 mt-2">Elegant</p>
-              <p className="text-xs tracking-[0.2em] uppercase text-white/70">Bedrooms</p>
+              <p className="font-serif text-5xl text-gold font-light leading-none">
+                {t.about.statNumber}
+              </p>
+              <p className="text-xs tracking-[0.2em] uppercase text-white/70 mt-2">
+                {t.about.statLabelLine1}
+              </p>
+              <p className="text-xs tracking-[0.2em] uppercase text-white/70">
+                {t.about.statLabelLine2}
+              </p>
             </motion.div>
 
             {/* Small accent image */}
@@ -61,7 +62,7 @@ export default function AboutSection() {
             >
               <Image
                 src="/images/ranuli_5.jpeg"
-                alt="Private pool"
+                alt={t.about.accentImageAlt}
                 fill
                 className="object-cover"
               />
@@ -77,28 +78,23 @@ export default function AboutSection() {
             className="pt-8 lg:pt-0"
           >
             <SectionTitle
-              tagline="Our Story"
-              title="A home away from home"
+              tagline={t.about.tagline}
+              title={t.about.title}
               align="left"
               className="mb-8"
             />
 
             <p className="text-stone-600 leading-relaxed mb-5 text-base sm:text-lg">
-              Welcome to Relax Villa, where comfort, tranquility, and warm hospitality come
-              together to create a stay that truly feels like home. Designed for travellers who
-              appreciate peaceful surroundings and personal attention, our villa offers a
-              relaxing and elegant atmosphere.
+              {t.about.paragraph1}
             </p>
 
             <p className="text-stone-600 leading-relaxed mb-8 text-base sm:text-lg">
-              Whether you are visiting for a short getaway or a longer stay, Relax Villa offers
-              a welcoming space where you can unwind, feel at home, and enjoy a truly
-              relaxing experience.
+              {t.about.paragraph2}
             </p>
 
             {/* Highlights list */}
             <ul className="space-y-3 mb-10">
-              {highlights.map((item) => (
+              {t.about.highlights.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <CheckCircle2 size={18} className="text-gold shrink-0 mt-0.5" />
                   <span className="text-stone-700 text-sm sm:text-base">{item}</span>
@@ -109,10 +105,10 @@ export default function AboutSection() {
             {/* Quote */}
             <div className="border-l-2 border-gold pl-6 py-2">
               <p className="font-serif italic text-green-900 text-xl sm:text-2xl leading-relaxed">
-                &ldquo;Stay in comfort, relax in style, and feel at home.&rdquo;
+                &ldquo;{t.about.quote}&rdquo;
               </p>
               <p className="text-gold-dark text-sm tracking-wider uppercase mt-3 font-medium">
-                — Relax Villa
+                {t.about.quoteAuthor}
               </p>
             </div>
           </motion.div>

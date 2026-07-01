@@ -6,9 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
 import { galleryImages } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function GallerySection() {
   const [selected, setSelected] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   return (
     <section id="gallery" className="bg-white py-24 lg:py-36 overflow-hidden">
@@ -21,9 +23,9 @@ export default function GallerySection() {
           className="mb-16 lg:mb-20"
         >
           <SectionTitle
-            tagline="Gallery"
-            title="A glimpse of paradise"
-            subtitle="Browse through our collection of images and envision the tranquil escape that awaits you at Relax Villa."
+            tagline={t.gallery.tagline}
+            title={t.gallery.title}
+            subtitle={t.gallery.subtitle}
           />
         </motion.div>
 
@@ -31,7 +33,7 @@ export default function GallerySection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
           {galleryImages.map((img, i) => (
             <motion.div
-              key={i}
+              key={img.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
@@ -44,7 +46,7 @@ export default function GallerySection() {
             >
               <Image
                 src={img.src}
-                alt={img.alt}
+                alt={t.gallery.alt[img.id]}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -52,7 +54,7 @@ export default function GallerySection() {
               <div className="absolute inset-0 bg-green-950/0 group-hover:bg-green-950/40 transition-all duration-400 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white flex flex-col items-center gap-2">
                   <ZoomIn size={24} />
-                  <p className="text-xs tracking-[0.2em] uppercase">{img.alt}</p>
+                  <p className="text-xs tracking-[0.2em] uppercase">{t.gallery.alt[img.id]}</p>
                 </div>
               </div>
             </motion.div>
@@ -75,7 +77,7 @@ export default function GallerySection() {
             <button
               className="absolute top-6 right-6 text-white/70 hover:text-white p-2 z-10"
               onClick={() => setSelected(null)}
-              aria-label="Close"
+              aria-label={t.gallery.closeLabel}
             >
               <X size={28} />
             </button>
@@ -83,7 +85,7 @@ export default function GallerySection() {
             {/* Caption */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
               <p className="text-white/60 text-sm tracking-wider">
-                {galleryImages[selected].alt}
+                {t.gallery.alt[galleryImages[selected].id]}
               </p>
               <p className="text-white/30 text-xs mt-1">
                 {selected + 1} / {galleryImages.length}
@@ -101,7 +103,7 @@ export default function GallerySection() {
             >
               <Image
                 src={galleryImages[selected].src.replace("w=800", "w=1400")}
-                alt={galleryImages[selected].alt}
+                alt={t.gallery.alt[galleryImages[selected].id]}
                 fill
                 className="object-contain"
                 quality={90}
@@ -115,7 +117,7 @@ export default function GallerySection() {
                 e.stopPropagation();
                 setSelected((s) => ((s ?? 0) - 1 + galleryImages.length) % galleryImages.length);
               }}
-              aria-label="Previous"
+              aria-label={t.gallery.previousLabel}
             >
               ‹
             </button>
@@ -125,7 +127,7 @@ export default function GallerySection() {
                 e.stopPropagation();
                 setSelected((s) => ((s ?? 0) + 1) % galleryImages.length);
               }}
-              aria-label="Next"
+              aria-label={t.gallery.nextLabel}
             >
               ›
             </button>
