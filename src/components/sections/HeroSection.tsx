@@ -19,7 +19,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-28 lg:pt-24"
     >
       {/* Background Image */}
       <Image
@@ -48,9 +48,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8"
+          className="mb-6"
         >
-          <Logo light size="xl" />
+          <Logo light size="lg" />
         </motion.div>
 
         {/* Tagline */}
