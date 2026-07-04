@@ -172,6 +172,8 @@ export interface Translations {
     phoneLabel: string;
     emailLabel: string;
     addressLabel: string;
+    facebookLabel: string;
+    facebookSubtitle: string;
     quote: string;
     formTitle: string;
     fullName: string;

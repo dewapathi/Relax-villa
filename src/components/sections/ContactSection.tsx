@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Mail, Phone, MapPin, Send } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
+import FacebookIcon from "../ui/FacebookIcon";
 import { CONTACT } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -129,6 +130,22 @@ export default function ContactSection() {
                 <p className="text-ivory/60 text-sm mt-0.5 leading-relaxed">{CONTACT.address}</p>
               </div>
             </div>
+
+            {/* Facebook */}
+            <a
+              href={CONTACT.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 bg-[#1877F2]/10 border border-[#1877F2]/30 p-5 rounded-sm hover:bg-[#1877F2]/20 hover:border-[#1877F2]/50 transition-all duration-300 group"
+            >
+              <div className="w-12 h-12 bg-[#1877F2] flex items-center justify-center rounded-sm shrink-0 group-hover:scale-105 transition-transform duration-300">
+                <FacebookIcon size={20} className="text-white" />
+              </div>
+              <div>
+                <p className="font-medium text-ivory">{t.contact.facebookLabel}</p>
+                <p className="text-ivory/60 text-sm mt-0.5">{t.contact.facebookSubtitle}</p>
+              </div>
+            </a>
 
             {/* Quote */}
             <div className="border-l-2 border-gold/40 pl-5 py-2 mt-4">

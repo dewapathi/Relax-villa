@@ -64,13 +64,12 @@ export const facilities: { id: FacilityId; icon: string }[] = [
   { id: "security", icon: "Shield" },
 ];
 
-// Placeholder contact details — replace with the real phone number, WhatsApp
-// number, email, address, and Google Maps embed URL before launch.
+// WhatsApp number and email are still placeholders — replace before launch.
 export const CONTACT = {
-  phone: "+94 77 123 4567",
+  phone: "+94 71 686 4065",
   whatsapp: "94771234567",
   email: "info@relaxvilla.com",
-  address: "123 Serenity Lane, Coastal Paradise, Sri Lanka",
-  googleMapsUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d507365.52!2d79.7775!3d7.8731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2593cf65a1e9d%3A0xe13da4b400e2d38c!2sSri%20Lanka!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus",
+  address: "93/1 Kattuwa Station Rd, Palangathurai, Kochchikade, Negombo 11500, Sri Lanka",
+  googleMapsUrl: "https://www.google.com/maps?cid=15840117038341323906&output=embed",
+  facebookUrl: "https://www.facebook.com/share/1J5PU7VLzr/?mibextid=wwXIfr",
 };

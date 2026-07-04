@@ -2,6 +2,7 @@
 
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import Logo from "../ui/Logo";
+import FacebookIcon from "../ui/FacebookIcon";
 import { navLinks, CONTACT } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -106,6 +107,17 @@ export default function Footer() {
                   <MapPin size={15} className="mt-0.5 shrink-0 text-gold/70" />
                   <span>{CONTACT.address}</span>
                 </div>
+              </li>
+              <li>
+                <a
+                  href={CONTACT.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 text-sm hover:text-gold transition-colors duration-200 group"
+                >
+                  <FacebookIcon size={15} className="mt-0.5 shrink-0 text-gold/70 group-hover:text-gold" />
+                  {t.contact.facebookLabel}
+                </a>
               </li>
             </ul>
           </div>

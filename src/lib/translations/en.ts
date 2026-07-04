@@ -208,6 +208,8 @@ export const en: Translations = {
     phoneLabel: "Phone",
     emailLabel: "Email",
     addressLabel: "Address",
+    facebookLabel: "Facebook",
+    facebookSubtitle: "Visit our page",
     quote: "We look forward to making your stay truly special.",
     formTitle: "Booking Enquiry Form",
     fullName: "Full Name *",
