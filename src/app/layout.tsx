@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { SmoothScrollProvider } from "@/context/SmoothScrollContext";
+import GrainOverlay from "@/components/ui/GrainOverlay";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -81,7 +83,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body className="min-h-screen">
-        <LanguageProvider>{children}</LanguageProvider>
+        <GrainOverlay />
+        <LanguageProvider>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

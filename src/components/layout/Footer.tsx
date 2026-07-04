@@ -27,7 +27,7 @@ export default function Footer() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-8 py-3.5 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:bg-gold-dark transition-colors duration-300 shrink-0"
+            className="btn-gold flex items-center gap-2 px-8 py-3.5 text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm shrink-0"
           >
             <MessageCircle size={16} />
             {t.footer.ctaButton}

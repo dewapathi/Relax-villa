@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
+import KenBurnsImage from "../ui/KenBurnsImage";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function AboutSection() {
@@ -23,14 +24,9 @@ export default function AboutSection() {
           >
             {/* Main image */}
             <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
-              <Image
-                src="/images/ranuli_2.jpeg"
-                alt={t.about.mainImageAlt}
-                fill
-                className="object-cover"
-              />
+              <KenBurnsImage src="/images/ranuli_2.jpeg" alt={t.about.mainImageAlt} />
               {/* Gold frame accent */}
-              <div className="absolute inset-0 ring-1 ring-inset ring-gold/10" />
+              <div className="absolute inset-0 ring-1 ring-inset ring-gold/10 z-10" />
             </div>
 
             {/* Floating accent card */}

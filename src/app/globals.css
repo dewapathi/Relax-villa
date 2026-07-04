@@ -20,8 +20,19 @@
   --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Lenis owns scroll smoothing now — native scroll-behavior would double up with it. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* Custom scrollbar */
@@ -51,4 +62,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Metallic gold CTA — a subtle sheen that shifts on hover instead of a flat color swap. */
+.btn-gold {
+  background-image: linear-gradient(135deg, #E8D5A3 0%, #C8A96E 45%, #A0832A 100%);
+  background-size: 180% 180%;
+  background-position: 0% 0%;
+  transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.btn-gold:hover {
+  background-position: 100% 100%;
 }

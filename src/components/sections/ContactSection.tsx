@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Mail, Phone, MapPin, Send } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
+import Reveal from "../ui/Reveal";
 import FacebookIcon from "../ui/FacebookIcon";
 import { CONTACT } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
@@ -52,20 +53,14 @@ export default function ContactSection() {
   return (
     <section id="contact" className="bg-green-900 py-24 lg:py-36 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="mb-16 lg:mb-20"
-        >
+        <Reveal className="mb-16 lg:mb-20">
           <SectionTitle
             tagline={t.contact.tagline}
             title={t.contact.title}
             subtitle={t.contact.subtitle}
             light
           />
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-5 gap-12 xl:gap-16">
           {/* Contact Info */}
@@ -277,7 +272,7 @@ export default function ContactSection() {
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <button
                     type="submit"
-                    className="flex-1 flex items-center justify-center gap-2 py-4 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:bg-gold-dark transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
+                    className="btn-gold flex-1 flex items-center justify-center gap-2 py-4 text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:shadow-lg hover:shadow-gold/20"
                   >
                     <Send size={15} />
                     {t.contact.send}

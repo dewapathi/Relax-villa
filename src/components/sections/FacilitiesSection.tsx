@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Waves, Wifi, Car, Coffee, Wind, ShowerHead, Tv, Shield } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
+import Reveal from "../ui/Reveal";
+import KenBurnsImage from "../ui/KenBurnsImage";
 import { facilities } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -24,20 +25,14 @@ export default function FacilitiesSection() {
   return (
     <section id="facilities" className="bg-green-900 py-24 lg:py-36 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="mb-16 lg:mb-20"
-        >
+        <Reveal className="mb-16 lg:mb-20">
           <SectionTitle
             tagline={t.facilities.tagline}
             title={t.facilities.title}
             subtitle={t.facilities.subtitle}
             light
           />
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
           {/* Pool Image */}
@@ -49,12 +44,7 @@ export default function FacilitiesSection() {
             className="relative"
           >
             <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-2xl shadow-black/30">
-              <Image
-                src="/images/ranuli_7.jpeg"
-                alt={t.facilities.poolImageAlt}
-                fill
-                className="object-cover"
-              />
+              <KenBurnsImage src="/images/ranuli_7.jpeg" alt={t.facilities.poolImageAlt} />
               <div className="absolute inset-0 bg-gradient-to-t from-green-950/40 to-transparent" />
 
               {/* Overlay badge */}

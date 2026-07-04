@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Navigation, Clock, Phone } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
+import Reveal from "../ui/Reveal";
 import { CONTACT } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -12,19 +13,13 @@ export default function LocationSection() {
   return (
     <section id="location" className="bg-white py-24 lg:py-36 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="mb-16 lg:mb-20"
-        >
+        <Reveal className="mb-16 lg:mb-20">
           <SectionTitle
             tagline={t.location.tagline}
             title={t.location.title}
             subtitle={t.location.subtitle}
           />
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
           {/* Map */}

@@ -5,8 +5,12 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
+import Reveal from "../ui/Reveal";
 import { galleryImages } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
+
+// Cycled per tile to give the masonry wall varied heights instead of a uniform grid.
+const ASPECT_PATTERN = ["4/5", "1/1", "3/4", "4/3", "1/1", "4/5"];
 
 export default function GallerySection() {
   const [selected, setSelected] = useState<number | null>(null);
@@ -15,33 +19,25 @@ export default function GallerySection() {
   return (
     <section id="gallery" className="bg-white py-24 lg:py-36 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="mb-16 lg:mb-20"
-        >
+        <Reveal className="mb-16 lg:mb-20">
           <SectionTitle
             tagline={t.gallery.tagline}
             title={t.gallery.title}
             subtitle={t.gallery.subtitle}
           />
-        </motion.div>
+        </Reveal>
 
-        {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+        {/* Masonry wall — CSS multi-column layout so photos keep their own rhythm instead of a uniform grid */}
+        <div className="columns-2 sm:columns-3 gap-3 sm:gap-4">
           {galleryImages.map((img, i) => (
             <motion.div
               key={img.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-              className={`relative group cursor-pointer overflow-hidden rounded-sm ${
-                i === 0 ? "sm:col-span-2 sm:row-span-2" : ""
-              }`}
-              style={{ aspectRatio: i === 0 ? "16/9" : "4/3" }}
+              transition={{ duration: 0.7, delay: (i % 6) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="relative group cursor-pointer overflow-hidden rounded-sm mb-3 sm:mb-4 break-inside-avoid"
+              style={{ aspectRatio: ASPECT_PATTERN[i % ASPECT_PATTERN.length] }}
               onClick={() => setSelected(i)}
             >
               <Image

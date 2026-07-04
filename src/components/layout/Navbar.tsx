@@ -7,11 +7,13 @@ import Logo from "../ui/Logo";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
 import { navLinks, CONTACT } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSmoothScrollTo } from "@/context/SmoothScrollContext";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useLanguage();
+  const scrollTo = useSmoothScrollTo();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -34,10 +36,7 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    scrollTo(href);
   };
 
   return (
@@ -101,7 +100,7 @@ export default function Navbar() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-gold text-green-950 text-sm tracking-widest uppercase font-medium rounded-sm hover:bg-gold-dark transition-colors duration-300"
+                className="btn-gold hidden sm:flex items-center gap-2 px-4 py-2 text-green-950 text-sm tracking-widest uppercase font-medium rounded-sm"
               >
                 <MessageCircle size={15} />
                 <span>{t.nav.bookNow}</span>
@@ -173,7 +172,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-4 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm"
+                className="btn-gold flex items-center justify-center gap-2 w-full py-4 text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm"
               >
                 <MessageCircle size={18} />
                 {t.nav.bookNowWhatsapp}

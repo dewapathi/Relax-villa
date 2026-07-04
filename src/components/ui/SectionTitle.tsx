@@ -37,7 +37,7 @@ export default function SectionTitle({
         </div>
       )}
       <h2
-        className={`font-serif font-light leading-[1.15] ${
+        className={`font-serif font-light leading-[1.15] text-balance ${
           light ? "text-ivory" : "text-green-950"
         } text-4xl sm:text-5xl lg:text-6xl`}
       >
@@ -45,7 +45,7 @@ export default function SectionTitle({
       </h2>
       {subtitle && (
         <p
-          className={`mt-2 text-base sm:text-lg leading-relaxed max-w-xl ${
+          className={`mt-2 text-base sm:text-lg leading-relaxed text-pretty max-w-xl ${
             align === "center" ? "mx-auto" : ""
           } ${light ? "text-ivory/70" : "text-stone-600"}`}
         >

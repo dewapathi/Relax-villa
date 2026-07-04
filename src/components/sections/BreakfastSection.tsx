@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Sunrise } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
+import KenBurnsImage from "../ui/KenBurnsImage";
 import { breakfastItems } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -72,14 +72,12 @@ export default function BreakfastSection() {
             className="relative"
           >
             <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
-              <Image
+              <KenBurnsImage
                 src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80"
                 alt={t.breakfast.imageAlt}
-                fill
-                className="object-cover"
               />
               {/* Gold border frame */}
-              <div className="absolute inset-4 border border-gold/20 rounded-sm pointer-events-none" />
+              <div className="absolute inset-4 border border-gold/20 rounded-sm pointer-events-none z-10" />
             </div>
 
             {/* Floating accent */}

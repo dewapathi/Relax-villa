@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { BedDouble, Coffee, Waves, Leaf } from "lucide-react";
 import SectionTitle from "../ui/SectionTitle";
+import Reveal from "../ui/Reveal";
 import { features } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -19,19 +20,13 @@ export default function FeaturesSection() {
   return (
     <section className="bg-ivory py-24 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="mb-16 lg:mb-20"
-        >
+        <Reveal className="mb-16 lg:mb-20">
           <SectionTitle
             tagline={t.features.tagline}
             title={t.features.title}
             subtitle={t.features.subtitle}
           />
-        </motion.div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {features.map((feature, i) => (

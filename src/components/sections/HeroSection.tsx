@@ -1,35 +1,46 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import Logo from "../ui/Logo";
 import { CONTACT } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSmoothScrollTo } from "@/context/SmoothScrollContext";
 
 export default function HeroSection() {
   const { t } = useLanguage();
+  const scrollTo = useSmoothScrollTo();
   const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(t.whatsapp.bookingMessage)}`;
 
-  const scrollToAbout = () => {
-    document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
     <section
+      ref={sectionRef}
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-28 lg:pt-24"
+      className="relative min-h-screen flex flex-col overflow-hidden pt-28 lg:pt-24"
     >
-      {/* Background Image */}
-      <Image
-        src="/images/ranuli_4.jpeg"
-        alt="Relax Villa – Luxury private pool at sunset"
-        fill
-        className="object-cover"
-        priority
-        quality={90}
-      />
+      {/* Background image — parallax wrapper moves slower than scroll, inner layer holds a slow Ken Burns zoom */}
+      <motion.div style={{ y: parallaxY }} className="absolute inset-x-0 -top-[15%] h-[130%]">
+        <motion.div
+          className="absolute inset-0"
+          animate={{ scale: [1, 1.08] }}
+          transition={{ duration: 22, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        >
+          <Image
+            src="/images/ranuli_4.jpeg"
+            alt="Relax Villa – Luxury private pool at sunset"
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+          />
+        </motion.div>
+      </motion.div>
 
       {/* Multi-layer overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
@@ -41,8 +52,8 @@ export default function HeroSection() {
       <div className="absolute bottom-16 left-6 w-16 h-16 border-b border-l border-gold/30" />
       <div className="absolute bottom-16 right-6 w-16 h-16 border-b border-r border-gold/30" />
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-5xl mx-auto">
+      {/* Main Content — flex-1 so it centers within whatever space is left above the scroll indicator, instead of an absolutely-positioned indicator fighting centered content for the same space on short viewports */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -109,7 +120,7 @@ export default function HeroSection() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-8 py-4 bg-gold text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:bg-gold-dark transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
+            className="btn-gold flex items-center justify-center gap-2 px-8 py-4 text-green-950 text-sm tracking-[0.2em] uppercase font-medium rounded-sm hover:shadow-lg hover:shadow-gold/20"
           >
             <MessageCircle size={16} />
             {t.hero.cta}
@@ -121,7 +132,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.8 }}
-          className="flex items-center gap-8 sm:gap-12 mt-14 pt-10 border-t border-white/20"
+          className="flex items-center gap-8 sm:gap-12 mt-8 pt-6 sm:mt-10 sm:pt-8 border-t border-white/20"
         >
           {[
             { value: t.hero.stats.bedroomsValue, label: t.hero.stats.bedroomsLabel },
@@ -140,23 +151,25 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.button
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.3, duration: 0.7 }}
-        onClick={scrollToAbout}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 hover:text-gold transition-colors duration-300"
-        aria-label="Scroll down"
-      >
-        <span className="text-[10px] tracking-[0.3em] uppercase">{t.hero.scroll}</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      {/* Scroll Indicator — lives in normal flow with its own reserved space, so it can never overlap the centered content above on short viewports */}
+      <div className="relative z-10 shrink-0 flex justify-center pb-4">
+        <motion.button
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.3, duration: 0.7 }}
+          onClick={() => scrollTo("#about")}
+          className="flex flex-col items-center gap-1 text-white/50 hover:text-gold transition-colors duration-300"
+          aria-label="Scroll down"
         >
-          <ChevronDown size={20} />
-        </motion.div>
-      </motion.button>
+          <span className="text-[10px] tracking-[0.3em] uppercase">{t.hero.scroll}</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown size={20} />
+          </motion.div>
+        </motion.button>
+      </div>
     </section>
   );
 }
