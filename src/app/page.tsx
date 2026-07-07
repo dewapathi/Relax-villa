@@ -6,7 +6,6 @@ import FeaturesSection from "@/components/sections/FeaturesSection";
 import FacilitiesSection from "@/components/sections/FacilitiesSection";
 import BreakfastSection from "@/components/sections/BreakfastSection";
 import GallerySection from "@/components/sections/GallerySection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import LocationSection from "@/components/sections/LocationSection";
 import ContactSection from "@/components/sections/ContactSection";
 
@@ -21,7 +20,6 @@ export default function Home() {
         <FacilitiesSection />
         <BreakfastSection />
         <GallerySection />
-        <TestimonialsSection />
         <LocationSection />
         <ContactSection />
       </main>

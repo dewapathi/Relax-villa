@@ -45,13 +45,9 @@ export const testimonials: { id: TestimonialId; name: string; rating: number; da
   { id: 3, name: "Michael Chen", rating: 5, date: "October 2024", initials: "MC" },
 ];
 
-export const breakfastItems: { id: BreakfastItemId }[] = [
-  { id: "pastries" },
-  { id: "fruit" },
-  { id: "eggs" },
-  { id: "coffee" },
-  { id: "local" },
-];
+// Only Eggs Any Style is offered for now — add pastries/fruit/coffee/local back
+// here once the villa's breakfast menu expands (their translations already exist).
+export const breakfastItems: { id: BreakfastItemId }[] = [{ id: "eggs" }];
 
 export const facilities: { id: FacilityId; icon: string }[] = [
   { id: "pool", icon: "Waves" },
